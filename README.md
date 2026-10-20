@@ -2,7 +2,19 @@
 
 ## Know Your Basic Fitness Test Requirement for GAF
 
-An application for calculating and tracking Basic Fitness Test (BFT) requirements for the Ghana Armed Forces (GAF). Get your pass mark requirements based on age and gender, or calculate your BFT percentage based on your performance.
+An application for calculating and tracking Basic Fitness Test (BFT) requirements for the Ghana Armed Forces (GAF). Get your pass mark requirements based on age and gender, or calculate your BFT percentage and performance level.
+
+## 📥 Download the App
+
+The latest release is available on GitHub Releases.
+
+- Release page: [TrialApps](https://github.com/jackbalo/bft_calculator_with_chart/releases/tag/TrialApps)
+- Android APK (arm64-v8a): [Download](https://github.com/jackbalo/bft_calculator_with_chart/releases/download/TrialApps/app-arm64-v8a-release.apk)
+- Android APK (armeabi-v7a): [Download](https://github.com/jackbalo/bft_calculator_with_chart/releases/download/TrialApps/app-armeabi-v7a-release.apk)
+- Android APK (x86_64): [Download](https://github.com/jackbalo/bft_calculator_with_chart/releases/download/TrialApps/app-x86_64-release.apk)
+- Windows executable: [Download](https://github.com/jackbalo/bft_calculator_with_chart/releases/download/TrialApps/BFTCalculator.exe)
+
+> These binaries are published as GitHub Release assets, so users can click directly to download the latest APK or EXE without cloning the repository.
 
 ## 📸 Screenshots
 
@@ -50,8 +62,8 @@ Before you begin, ensure you have the following installed:
 ### Clone the Repository
 
 ```bash
-git clone repository-urlhttps://github.com/jackbalo/bft_calculator.git
-cd bft_app
+git clone https://github.com/jackbalo/bft_calculator_with_chart.git
+cd bft_calculator_with_chart
 ```
 
 ### Install Dependencies
@@ -202,6 +214,7 @@ assets/
 ├── t2.jpg                             # Background - push-ups form
 ├── t3.jpg                             # Background - general BFT
 ├── t4.jpg                             # Background - outdoor setting
+├── t5.jpg                             # Background - running activity
 └── t5.jpg                             # Background - running activity
 
 pubspec.yaml                           # Project configuration and dependencies
