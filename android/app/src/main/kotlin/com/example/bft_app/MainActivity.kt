@@ -1,4 +1,4 @@
-package com.balo.bft_calculator
+package com.baloblack.bft_calculator
 
 import io.flutter.embedding.android.FlutterActivity
 

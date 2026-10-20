@@ -1,7 +1,15 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
+}
+
+val keystoreProperties = Properties()
+val keystorePropertiesFile = rootProject.file("key.properties")
+if (keystorePropertiesFile.exists()) {
+    keystorePropertiesFile.inputStream().use(keystoreProperties::load)
 }
 
 android {
@@ -27,10 +35,10 @@ namespace = "com.baloblack.bft_calculator"
 
     signingConfigs {
         create("release") {
-            keyAlias = "bft-key"
-            keyPassword = "BFT@2024Release"
-            storeFile = file("bft-release-key.jks")
-            storePassword = "BFT@2024Release"
+            keyAlias = keystoreProperties.getProperty("keyAlias", "")
+            keyPassword = keystoreProperties.getProperty("keyPassword", "")
+            storeFile = keystoreProperties.getProperty("storeFile")?.let { file(it) }
+            storePassword = keystoreProperties.getProperty("storePassword", "")
         }
     }
 
@@ -49,4 +57,23 @@ kotlin {
 
 flutter {
     source = "../.."
+}
+
+tasks.configureEach {
+    if (name == "packageRelease" || name == "bundleRelease") {
+        doFirst {
+            require(keystorePropertiesFile.isFile) {
+                "Missing android/key.properties. Add your local release signing settings before building a release APK."
+            }
+            val keystorePath = keystoreProperties.getProperty("storeFile")
+            require(!keystorePath.isNullOrBlank() && project.file(keystorePath).isFile) {
+                "The release keystore configured in android/key.properties was not found."
+            }
+            listOf("keyAlias", "keyPassword", "storePassword").forEach { property ->
+                require(!keystoreProperties.getProperty(property).isNullOrBlank()) {
+                    "Missing '$property' in android/key.properties."
+                }
+            }
+        }
+    }
 }
